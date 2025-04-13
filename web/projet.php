@@ -1,6 +1,7 @@
 <?php
 
-include("Config/config.php");
+include 'config/config.php';
+include "PHP/fonctions.php";
 
 if(isset($_GET['id_projet'])) $idProjet = $_GET['id_projet'];
 else $idProjet = 1;

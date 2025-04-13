@@ -60,6 +60,3 @@ function afficherProjet($id, $titre, $illustration, $date){
                 <p class="date">' . $date . '</p>
             </article></a>';
 }
-
-
-?>

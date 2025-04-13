@@ -1,0 +1,62 @@
+services:
+  php:
+    container_name: ${COMPOSE_PROJECT_NAME}-php
+    build: .
+    ports:
+      - "80:80" # HTTP
+      - "443:443" # HTTPS
+      - "443:443/udp" # HTTP/3
+    volumes:
+      - ../web:/app/public
+     # - ./php.ini:/usr/local/etc/php/php.ini:ro # Monte le fichier php.ini personnalisé
+      - caddy_data:/data
+      - caddy_config:/config
+    tty: true
+    links:
+      - db
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    
+  db:
+    container_name: ${COMPOSE_PROJECT_NAME}-db
+    image: mariadb:latest
+    ports:
+      - "3307:3306"
+    volumes:
+      - ${COMPOSE_PROJECT_NAME}_dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    command: --innodb-use-native-aio=0
+
+  phpmyadmin:
+      container_name: ${COMPOSE_PROJECT_NAME}-phpmyadmin
+      image: phpmyadmin/phpmyadmin
+      depends_on:
+        - db
+      ports:
+        - 8036:80
+      environment:
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+        - PMA_USER=${MYSQL_USER}
+        - PMA_PASSWORD=${MYSQL_PASSWORD}
+        - PMA_ARBITRARY="1"
+        - PMA_HOST=${MYSQL_HOST}
+        - UPLOAD_LIMIT=300M
+
+  mailhog:
+      image: mailhog/mailhog
+      ports:
+        - "1025:1025"
+        - "8025:8025"
+
+
+# Volumes needed for Caddy certificates and configuration
+volumes:
+  caddy_data:
+  caddy_config:
+  mdportfolio_dbdata:

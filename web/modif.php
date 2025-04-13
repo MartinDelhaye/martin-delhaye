@@ -1,7 +1,8 @@
 <?php 
 
 
-include("Config/config.php");
+include 'config/config.php';
+include "PHP/fonctions.php";
 
 if (isset($_POST['texte_projet'])) {
 

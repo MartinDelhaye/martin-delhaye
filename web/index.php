@@ -1,6 +1,7 @@
 <?php
 
-include("Config/config.php");
+include 'config/config.php';
+include "PHP/fonctions.php";
 
 
 $listeCompetencesLangage = obtenirDonnees('nom_competence, image_competence', 'competences', 'type_competence = "Langage"');
@@ -9,6 +10,8 @@ $listeCompetencesCMS = obtenirDonnees('nom_competence, image_competence', 'compe
 $listeCompetencesLogiciel = obtenirDonnees('nom_competence, image_competence', 'competences', 'type_competence = "Logiciel"');
 
 $listeProjets = obtenirDonnees('id_projet, titre_projet, illustration_projet, date_projet', 'projets', '', 'date_projet DESC');
+
+
 
 ?>
 
@@ -24,7 +27,7 @@ $listeProjets = obtenirDonnees('id_projet, titre_projet, illustration_projet, da
 
 <body>
 <?php
-    session_start();
+    // session_start();
     if(!isset($_SESSION['connecte'])) :
         $_SESSION['connecte'] = true;
         ?>
