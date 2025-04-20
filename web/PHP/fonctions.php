@@ -1,62 +1,25 @@
 <?php
 
-function obtenirDonnees($info, $table, $filtre = '', $trier = '', $type_fetch = 'fetchAll') {
-    global $bdd;
-    try {
-        $requete = 'SELECT ' . $info . ' FROM ' . $table;
-        if (!empty($filtre)) {
-            $requete .= ' WHERE ' . $filtre;
-        }
-        if (!empty($trier)) {
-            $requete .= ' ORDER BY ' . $trier;
-        }
-        
-        $stmt = $bdd->query($requete);
-        return $stmt->$type_fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo $requete."<br>";
-        die('Erreur : ' . $e->getMessage());
+/**
+ * Génère une balise <picture> avec des sources d'images conditionnelles.
+ *
+ * @param string $img L'URL de l'image par défaut pour les écrans larges.
+ * @param string $alt Le texte alternatif de l'image.
+ * @param string $class La classe CSS optionnelle de l'image.
+ * @param string $id L'ID optionnel de l'image.
+ * @param string $paramSup Paramètres supplémentaires à ajouter à l'image (ex: 'loading="lazy"').
+ * @param array $sources Un tableau associatif où les clés sont les URLs des images et les valeurs sont les conditions de media (ex: "(max-width: 600px)").
+ * @return string Le code HTML généré avec la balise <picture> et ses sources.
+ */
+function makePicture(string $img, string $alt, string $class = "", string $id = "", string $paramSup = "", array $sources=[]): string
+{
+    $classAttr = $class !== "" ? ' class="' . $class . '"' : '';
+    $idAttr = $id !== "" ? ' id="' . $id . '"' : '';
+    $html = '<picture>';
+    foreach ($sources as $src => $viewportCondition) {
+        $html .= '<source media="' . $viewportCondition . '" srcset="' . $src . '">';
     }
-}
-
-function infoMeta() {
-    echo '
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Martin Delhaye">
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    
-    <link rel="stylesheet" href="https://use.typekit.net/tlw3ues.css">
-    
-    <link rel="stylesheet" href="CSS/style.css">
-    
-    <script src="JS/scripts.js" defer></script>';
-}
-
-
-function afficherImage($url_image, $title_alt, $class = "", $id = "", $paramSup = ""){
-    if($class != "") $class = ' class="' . $class . '"'; 
-    if($id != "") $id = ' id="' . $id . '"'; 
-
-    return '<img src="' . $url_image . '" alt="' . $title_alt . '" title="' . $title_alt . '"' . $class . $id . ' ' . $paramSup . ' />';
-}
-
-
-
-function afficherCompetence($nomCompetence, $imageCompetence){
-    $imageCompetence ? $image = afficherImage($imageCompetence, "Logo de ".$nomCompetence, 'icon-small') : $image = '';
-    return '<article class="border-rond fond-black flex row align-items-center gap-small padding-small"> ' . $image . '<p>' . $nomCompetence . '</p></article>';
-}
-
-function afficherProjet($id, $titre, $illustration, $date){
-    $illustration ? $image = afficherImage($illustration, "Illustration de ".$titre, 'width-100') : $image = '';
-    return '<a href="projet.php?id_projet=' . $id . '" class="width-33 width-70-mobile"><article class="projets button flex column align-items-center gap-small padding-small"> ' . 
-                $image . '
-                <h3>' . $titre . '</h3>
-                <p class="date">' . $date . '</p>
-            </article></a>';
+    $html .= '<img src="' . $img . '" alt="' . $alt . '" title="' . $alt . '"' . $classAttr . $idAttr . ' ' . $paramSup . ' />';
+    $html .= '</picture>';
+    return $html;
 }

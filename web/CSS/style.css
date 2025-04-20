@@ -18,10 +18,8 @@ nav {
     --color-second: #FF6F61;
     --color-black: #1E1E1E;
     --color-white: #F0F0F0;
-
-
     --border-radius: 10px;
-
+    --height-header: 50px;
 }
 
 /* ------------ Element de Base ------------ */
@@ -31,11 +29,10 @@ nav {
 }
 
 body {
-    background-color: var(--color-white);
+    background-color: var(--color-black);
     font-family: 'coolvetica', sans-serif;
     cursor: auto;
 }
-
 
 h1 {
     font-size: 5rem;
@@ -45,38 +42,17 @@ h2 {
     font-size: 2.5rem;
 }
 
-h2::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    height: 1px;
-    width: 0;
-    background-color: #ffffff;
-    transition: width 0.3s ease, left 0.3s ease;
-}
-
-h2:hover::after {
-    width: 100%;
-    left: 0;
-}
-
 h3 {
     font-size: 2rem;
 }
 
 h4,
-.text-important {
+.sous-titre {
     font-size: 1.5rem;
-    text-decoration: underline;
 }
 
 p {
     font-size: 1.2rem;
-}
-
-img {
-    object-fit: cover;
 }
 
 button,
@@ -84,48 +60,20 @@ a {
     cursor: pointer;
 }
 
+/* Header */
 header {
-    height: 50px;
-}
-
-nav {
-    box-sizing: border-box;
-    position: fixed;
-    right: 0;
-    height: 50px;
-}
-
-.animation-hoverBarre {
-    position: relative;
-}
-
-.animation-hoverBarre::after {
-    content: "";
+    height: var(--height-header);
     position: absolute;
-    /* Positionnement absolu par rapport au lien */
-    left: 50%;
-    /* Positionnement au centre */
-    bottom: -2px;
-    /* Ajuste la position de la barre sous le texte */
-    height: 2px;
-    /* Épaisseur de la barre */
-    width: 0;
-    /* Commence à une largeur de 0 */
-    background-color: var(--color-second);
-    /* Couleur de la barre */
-    transition: width 0.3s ease, left 0.3s ease;
-    /* Animation pour la largeur et la position */
+    top: 0;
+    width: 100%;
 }
 
-.animation-hoverBarre:hover::after {
-    width: 100%;
-    /* S'étend à 100% sur le survol */
-    left: 0;
-    /* Aligne la barre à gauche */
+.navButton {
+    width: 50px;
+    font-size: 20px;
 }
 
 /* ------------ Class ------------ */
-/* Couleur */
 .fond-main {
     background-color: var(--color-main);
 }
@@ -142,9 +90,7 @@ nav {
     background-color: var(--color-black);
 }
 
-
 /* Display flex */
-
 .display-none {
     display: none;
 }
@@ -161,33 +107,25 @@ nav {
     flex-direction: row;
 }
 
-.flex-wrap {
-    flex-wrap: wrap;
-}
-
 .justify-content-center {
     justify-content: center;
 }
 
 .justify-content-between {
     justify-content: space-between;
-
 }
 
 .align-items-center {
     align-items: center;
 }
 
-.gap-small {
-    gap: 1vh;
-}
-
 .gap-medium {
     gap: 2vh;
 }
 
-.gap-large {
-    gap: 5vh;
+.margin-auto {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 /* Taille */
@@ -195,101 +133,50 @@ nav {
     width: 100%;
 }
 
-.width-33 {
-    width: 33%;
-}
-
-.width-50 {
-    width: 50%;
-}
-
 .height-100 {
     height: 100%;
 }
 
-.height-50 {
-    height: 50%;
+.width-content {
+    width: fit-content;
 }
 
 .height-screen {
     height: 100vh;
 }
 
-.min-height-screen {
-    min-height: 100vh;
-}
-
-.height-80 {
-    height: 80%;
-}
-
-.height-100 {
-    height: 100%;
-}
-
 .padding-small {
     padding: 1%;
 }
 
-.padding-medium {
-    padding: 5%;
-}
-
-.padding-large {
-    padding: 10%;
-}
-
-
-
-.padding-no-top {
-    padding-top: 0;
-}
-
 /* Border */
-.border-second {
-    border: var(--color-second) solid;
+.border-radius-top-left {
+    border-top-left-radius: var(--border-radius);
 }
 
-/* Border Radius */
-.border-rond {
-    border-radius: var(--border-radius);
+.border-radius-top-right {
+    border-top-right-radius: var(--border-radius);
 }
 
-.border-rond-no-top {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+.border-radius-bottom-left {
+    border-bottom-left-radius: var(--border-radius);
 }
 
-.border-rond-no-right {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+.border-radius-bottom-right {
+    border-bottom-right-radius: var(--border-radius);
 }
-
-
-
 
 /* Texte */
 .text-center {
     text-align: center;
 }
 
-.text-white {
-    color: var(--color-white);
-}
-
-.text-main {
+.text-color-main {
     color: var(--color-main);
 }
 
-.text-second {
+.text-color-second {
     color: var(--color-second);
-}
-
-
-/* Autre */
-.projets {
-    min-width: 200px;
-    min-height: 200px;
 }
 
 .icon {
@@ -298,145 +185,33 @@ nav {
     object-fit: contain;
 }
 
-.icon-small {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.button {
-    background-color: var(--color-white);
-    color: var(--color-black);
-    border-radius: var(--border-radius);
-    border: var(--color-black) solid 1px;
-    padding: 2vh;
-    transition: all 0.3s ease;
-    text-align: center;
-
-    /* z-index: 5; */
-}
-
-.button:hover {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    border: var(--color-white) solid 1px;
-}
-
-
-.button:active {
-    color: var(--color-second);
-    border: var(--color-second) solid 1px;
-}
-
-.button-icon:hover img {
-    filter: invert(1); 
-    
-}
-
-.animation-hautBas:hover {
-    animation: hautBas 0.5s ease infinite;
-}
-
-.filtre-blanc {
-    filter: grayscale(100%);
-}
-
-.filtre-blanc:hover {
-    filter: grayscale(0%);
-}
-
-
-.centrer {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.overflow-scroll {
-    overflow-y: auto;
-}
-
-.overflowX-scroll {
-    overflow-x: auto;
-}
-
-
-.fleche-carrousel {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    top: 50%; 
-    transform: translateY(-50%); 
-    cursor: pointer;
-}
-
 /* ------------ ID ------------ */
 
-/* index.php */
+/* ------------- Animations ------------- */
 
-#acceuil,
-#mainProjet {
-    height: calc(100vh - 50px);
-}
-
-#acceuil .text-main {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#sous-titre {
-    font-size: 2rem;
-}
-
-#listeCompetences {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#returnTop {
-    opacity: 0;
-    pointer-events: none;
-    position: fixed;
-    bottom: 1%;
-    right: 1%;
-    transform : rotate(180deg);
-}
-
-#returnIndex:hover {
-    animation : rotateIntoUp 1s linear infinite;
-}
-
-/* projet.php */
-
-#contenuProjet{
-    height: 70%;
-}
-
-#titreProjet {
-    font-size: 3rem;
-}
-
-
-#diapo {
+.animation-hoverBarre {
     position: relative;
 }
 
-#carrousel-precedent {
-    left: 1%;
-    transform: rotate(90deg);
+.animation-hoverBarre::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    background-color: var(--color-second);
+    transition: width 0.3s ease, left 0.3s ease;
 }
 
-#carrousel-suivant {
-    right: 1%;
-    transform: rotate(-90deg);
+.animation-hoverBarre:hover::after {
+    width: 100%;
+    left: 0;
 }
 
-#carrousel-image {
-    object-fit: contain;
+.animation-hautBas:hover {
+    animation: hautBas 0.5s ease-in-out infinite;
 }
-
-
-
-/* ------------- Keyframe ------------- */
 
 @keyframes hautBas {
     0% {
@@ -444,7 +219,7 @@ nav {
     }
 
     50% {
-        transform: translateY(2px);
+        transform: translateY(-10px);
     }
 
     100% {
@@ -452,33 +227,7 @@ nav {
     }
 }
 
-
-@keyframes rotateIntoUp {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(360deg);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    75% {
-        transform: translateY(10px);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-
 /* ------------- Media Queries ------------- */
-
-
 @media (max-width: 768px) {
     h1 {
         font-size: 3rem;
@@ -493,7 +242,7 @@ nav {
     }
 
     h4,
-    .text-important {
+    .sous-titre {
         font-size: 1.25rem;
     }
 
@@ -501,20 +250,8 @@ nav {
         font-size: 1rem;
     }
 
-
     .column-mobile {
         flex-direction: column;
-    }
-    .width-70-mobile {
-        width: 70%;
-    }
-    .width-100-mobile {
-        width: 100%;
-    }
-
-
-    nav {
-        padding: 0 !important;
     }
 
     #menuNav {
@@ -529,66 +266,12 @@ nav {
         overflow-y: auto;
         font-size: 2rem;
         gap: 5vh;
-
         z-index: 10;
-
     }
 
     #menuBurger {
         box-sizing: border-box;
         display: block;
         z-index: 20;
-    }
-
-
-    #mainProjet{
-        /* height: auto; */
-        /* gap : 20px; */
-    }
-
-}
-
-.navButton{
-    width: 50px;
-    font-size: 20px;
-}
-
-
-
-
-
-/* Splashscreen Style */
-.splashscreen {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    opacity: 1;
-    visibility: visible;
-    background: var(--color-main);
-    z-index: 3;
-
-    animation: splashScreen 2s cubic-bezier(0.80, 0, 1, 1) forwards;
-}
-
-/* Animation Keyframes */
-@keyframes splashScreen {
-    0% {
-        transform: scale(0);
-        border-radius: 50%;
-    }
-    45% {
-        border-radius: 50%;
-    }
-    50% {
-        border-radius: 0;
-        transform: scale(1.2); 
-    }
-    75% {
-        border-radius: 50%;
-    }
-    100% {
-        transform: scale(0);
-        border-radius: 50%;
-        visibility: hidden;
     }
 }
