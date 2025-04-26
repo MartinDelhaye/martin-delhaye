@@ -21,7 +21,7 @@ include "PHP/fonctions.php";
     <link rel="stylesheet" href="https://use.typekit.net/tlw3ues.css">
 
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="JS/scripts.js"></script>
+    <script type="module" src="JS/main.js"></script>
 </head>
 
 <body>
@@ -33,20 +33,21 @@ include "PHP/fonctions.php";
             <button id="menuBurger" class="text-center display-none navButton" aria-label="Ouvrir le menu">
                 &#9776;
             </button>
-            <div id="menuNav" class="flex align-items-center gap-medium column-mobile">
-                <a href="#quiJeSuis" class="animation-hoverBarre">Qui Je suis </a>
-                <a href="#competences" class="animation-hoverBarre">Compétences</a>
-                <a href="#projets" class="animation-hoverBarre">Projets</a>
-                <a href="#contact" class="animation-hoverBarre">Contact</a>
-            </div>
+            <ul id="menuNav" class="flex align-items-center gap-medium column-mobile">
+                <li><a href="#quiJeSuis" class="animation-hoverBarre">Qui Je suis </a></li>
+                <li><a href="#competences" class="animation-hoverBarre">Compétences</a></li>
+                <li><a href="#projets" class="animation-hoverBarre">Projets</a></li>
+                <li><a href="#contact" class="animation-hoverBarre">Contact</a></li>
+            </ul>
         </nav>
     </header>
     <main>
         <section id="accueil" class="height-screen flex column align-items-center text-center text-color-second">
-            <div class="flex align-items-center column margin-auto">
+            <!-- <div class="flex align-items-center column margin-auto">
                 <h1 class="fond-main width-content padding-small border-radius-bottom-left border-radius-top-left border-radius-bottom-right border-radius-top-right">Développeur Web</h1>
                 <p class="sous-titre fond-main width-content padding-small border-radius-bottom-left border-radius-bottom-right">Actuellement en recherche de Stage</p>
-            </div>
+            </div> -->
+            <h1 class="display-none">Developpeur Web</h1>
             <a href="#quiJeSuis"
                 class="animation-hautBas"><?php echo makePicture('images/Icon-flèche-bas-rose.png', 'Flèche aller vers le bas', 'icon'); ?>
             </a>
