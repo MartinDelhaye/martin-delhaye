@@ -90,6 +90,22 @@ header {
     background-color: var(--color-black);
 }
 
+/* Position */
+.position-relative {
+    position: relative;
+}
+.position-absolute {
+    position: absolute;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.right-50 {
+    right: 50%;
+}
+
 /* Display flex */
 .display-none {
     display: none;

@@ -43,13 +43,9 @@ include "PHP/fonctions.php";
     </header>
     <main>
         <section id="accueil" class="height-screen flex column align-items-center text-center text-color-second">
-            <!-- <div class="flex align-items-center column margin-auto">
-                <h1 class="fond-main width-content padding-small border-radius-bottom-left border-radius-top-left border-radius-bottom-right border-radius-top-right">Développeur Web</h1>
-                <p class="sous-titre fond-main width-content padding-small border-radius-bottom-left border-radius-bottom-right">Actuellement en recherche de Stage</p>
-            </div> -->
             <h1 class="display-none">Developpeur Web</h1>
             <a href="#quiJeSuis"
-                class="animation-hautBas"><?php echo makePicture('images/Icon-flèche-bas-rose.png', 'Flèche aller vers le bas', 'icon'); ?>
+                class="animation-hautBas position-absolute bottom-0 left-50"><?php echo makePicture('images/Icon-flèche-bas-rose.png', 'Flèche aller vers le bas', 'icon'); ?>
             </a>
         </section>
     </main>
