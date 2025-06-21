@@ -21,6 +21,9 @@ include "PHP/fonctions.php";
     <link rel="stylesheet" href="https://use.typekit.net/tlw3ues.css">
 
     <link rel="stylesheet" href="CSS/style.css">
+    <?php 
+    include 'assets/backgroundShader.html';
+    ?>
     <script type="module" src="JS/main.js"></script>
 </head>
 
@@ -29,7 +32,8 @@ include "PHP/fonctions.php";
         <div class="fond-main flex align-items-center padding-small border-radius-top-right border-radius-bottom-right">
             <p>Martin Delhaye</p>
         </div>
-        <nav class="fond-main flex justify-content-between align-items-center padding-small border-radius-top-left border-radius-bottom-left">
+        <nav
+            class="fond-main flex justify-content-between align-items-center padding-small border-radius-top-left border-radius-bottom-left">
             <button id="menuBurger" class="text-center display-none navButton" aria-label="Ouvrir le menu">
                 &#9776;
             </button>

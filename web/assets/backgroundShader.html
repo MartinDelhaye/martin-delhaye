@@ -1,0 +1,104 @@
+<script id="backgroundShaderVertex" type="x-shader/x-vertex">
+    varying vec2 vUv;
+
+    void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+</script>
+<script id="backgroundShaderFragment" type="x-shader/x-fragment">
+    #define PI 3.14159265359
+    
+    // --- Varyings et Uniforms ---
+    varying vec2 vUv;
+    uniform float iTime;
+    uniform vec3 iResolution;
+    uniform vec2 iMouse;
+    
+    uniform vec3 colMain;
+    uniform vec3 colSecond;
+    
+    uniform float uZoom;
+    uniform float uTimeScale;
+    uniform float uOrbitSpeed;
+    
+    // --- Paramètres internes (constants) ---
+    const float CELL_SIZE = 0.5;
+    const float DISK_EDGE_SMOOTH = 0.008;
+    
+    const float BASE_RADIUS_MAIN = 0.55;
+    const float RADIUS_VARIATION_MAIN = 0.05;
+    
+    const float BASE_RADIUS_ORBIT = 0.1;
+    const float RADIUS_VARIATION_ORBIT = 0.1;
+    
+    const float ORBIT_OFFSET_X = 0.07;
+    const float ORBIT_OFFSET_Y = 0.01;
+    
+    const float ADDITIONAL_RADIUS = 0.2;
+    const float ADDITIONAL_RADIUS_VARIATION = 0.05;
+    const float ADDITIONAL_INTENSITY = 0.6;
+    
+    const float STOP_ANGLE = PI / 2.0;
+    const float STOP_SMOOTH_RATIO = 0.0;
+    
+    const float MOUSE_EFFECT_MIN = 50.0;
+    const float MOUSE_EFFECT_MAX = 300.0;
+    
+    // --- Fonctions utilitaires ---
+    float disk(vec2 point, vec2 center, float radius) {
+        return 1.0 - smoothstep(radius - DISK_EDGE_SMOOTH, radius + DISK_EDGE_SMOOTH, length(point - center));
+    }
+    
+    void main() {
+        // --- Temps et coordonnées ---
+        float time = iTime * uTimeScale;
+        vec2 fragCoord = vUv * iResolution.xy;
+    
+        // Espace centré et zoomé
+        vec2 zoomedCoord = (uZoom * fragCoord - uZoom * iResolution.xy * 0.5) / iResolution.y;
+    
+        // Coordonnées souris centrées
+        vec2 mousePos = (2.0 * iMouse - 1.0) * iResolution.xy / iResolution.y;
+    
+        // --- Découpage en cellules ---
+        vec2 cellPos = mod(zoomedCoord, CELL_SIZE);
+        vec2 localPos = cellPos - CELL_SIZE / 2.0;
+    
+        float cellIndexX = floor(zoomedCoord.x / CELL_SIZE);
+        float cellIndexY = floor(zoomedCoord.y / CELL_SIZE);
+    
+        float shiftedIndexX = zoomedCoord.x / CELL_SIZE;
+        float shiftedIndexY = zoomedCoord.y / CELL_SIZE;
+    
+        vec3 pixelColor = vec3(-1.0);
+    
+        // --- Disque principal au centre de chaque cellule ---
+        float radiusMain = BASE_RADIUS_MAIN + RADIUS_VARIATION_MAIN * sin(time + shiftedIndexX * shiftedIndexY);
+        float diskMain = disk(localPos, vec2(0.0), radiusMain);
+        pixelColor = mix(pixelColor, colMain, diskMain);
+    
+        // --- Disque en orbite animée ---
+        float orbitTime = iTime * uOrbitSpeed + 0.1 * cellIndexX + 5.0 * cellIndexY;
+        float stoppedTime = (floor(orbitTime) + smoothstep(0.0, 1.0 - STOP_SMOOTH_RATIO, fract(orbitTime))) * STOP_ANGLE;
+    
+        float orbitX = ORBIT_OFFSET_X * cos(stoppedTime + cellIndexX);
+        float orbitY = ORBIT_OFFSET_Y * (sin(stoppedTime + cellIndexY) + cos(stoppedTime + cellIndexX));
+        float radiusOrbit = BASE_RADIUS_ORBIT + RADIUS_VARIATION_ORBIT * sin(time + cellIndexX + cellIndexY);
+        float diskOrbit = disk(localPos, vec2(orbitX, orbitY), radiusOrbit);
+        pixelColor = mix(pixelColor, colSecond, diskOrbit);
+    
+        // --- Disque central supplémentaire (effet pulsant) ---
+        float radiusExtra = ADDITIONAL_RADIUS + ADDITIONAL_RADIUS_VARIATION * sin(time * (1.0 + 0.01 * cellIndexX));
+        float diskExtra = disk(localPos, vec2(0.0), radiusExtra);
+        pixelColor += ADDITIONAL_INTENSITY * colSecond * diskExtra * sin(time + cellIndexX * cellIndexY + cellIndexX);
+    
+        // --- Effet souris (trou radial) ---
+        vec2 mouseScreenPos = iMouse * iResolution.xy;
+        float mouseDist = length(fragCoord - mouseScreenPos);
+        pixelColor -= smoothstep(MOUSE_EFFECT_MIN, MOUSE_EFFECT_MAX, mouseDist);
+    
+        // --- Couleur finale ---
+        gl_FragColor = vec4(pixelColor, 1.0);
+    }
+    </script>
