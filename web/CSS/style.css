@@ -16,7 +16,7 @@ nav {
 :root {
     --color-main: #2B2B4F;
     --color-second: #FF6F61;
-    --color-black: #1E1E1E;
+    --color-black: #000;  /* autre :  1E1E1E */
     --color-white: #F0F0F0;
     --border-radius: 10px;
     --height-header: 50px;
@@ -40,6 +40,21 @@ h1 {
 
 h2 {
     font-size: 2.5rem;
+}
+h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    background-color: #ffffff;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+h2:hover::after {
+    width: 100%;
+    left: 0;
 }
 
 h3 {
@@ -73,20 +88,31 @@ header {
     font-size: 20px;
 }
 
+main {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+main section {
+    height: 100vh;
+    scroll-snap-align: start;
+}
+
 /* ------------ Class ------------ */
-.fond-main {
+.background-main {
     background-color: var(--color-main);
 }
 
-.fond-second {
+.background-second {
     background-color: var(--color-second);
 }
 
-.fond-white {
+.background-white {
     background-color: var(--color-white);
 }
 
-.fond-black {
+.background-black {
     background-color: var(--color-black);
 }
 
@@ -94,6 +120,7 @@ header {
 .position-relative {
     position: relative;
 }
+
 .position-absolute {
     position: absolute;
 }
@@ -123,6 +150,10 @@ header {
     flex-direction: row;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 .justify-content-center {
     justify-content: center;
 }
@@ -135,35 +166,63 @@ header {
     align-items: center;
 }
 
+.gap-small {
+    gap: 1vh;
+}
+
 .gap-medium {
     gap: 2vh;
 }
+
+.gap-large {
+    gap: 5vh;
+}
+
 
 .margin-auto {
     margin-top: auto;
     margin-bottom: auto;
 }
 
-/* Taille */
+/* Width */
 .width-100 {
     width: 100%;
 }
 
-.height-100 {
-    height: 100%;
+.width-50 {
+    width: 50%;
+}
+
+.width-33 {
+    width: 33%;
 }
 
 .width-content {
     width: fit-content;
 }
 
+/* Height */
 .height-screen {
     height: 100vh;
 }
 
+.height-100 {
+    height: 100%;
+}
+
+.height-80 {
+    height: 80%;
+}
+
+/* Padding */
 .padding-small {
     padding: 1%;
 }
+
+.padding-large {
+    padding: 10%;
+}
+
 
 /* Border */
 .border-radius-top-left {
@@ -182,9 +241,17 @@ header {
     border-bottom-right-radius: var(--border-radius);
 }
 
+.border-radius{
+    border-radius: var(--border-radius);
+}
+
 /* Texte */
 .text-center {
     text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
 }
 
 .text-color-main {
@@ -194,14 +261,86 @@ header {
 .text-color-second {
     color: var(--color-second);
 }
+.text-color-white {
+    color: var(--color-white);
+}
 
+/* ------------ Image/SVG ------------ */
+img {
+    object-fit: cover;
+}
 .icon {
     width: 50px;
     height: 50px;
     object-fit: contain;
 }
 
-/* ------------ ID ------------ */
+.icon-small {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+
+/* Autre */
+.overflowX-scroll {
+    overflow-x: auto;
+}
+
+.shadow{
+    filter: drop-shadow(0px 0px 50px var(--color-second));
+    border-bottom: #FF6F61 solid 10px;
+}
+.button {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    border-radius: var(--border-radius);
+    border: var(--color-black) solid 1px;
+    padding: 2vh;
+    transition: all 0.3s ease;
+    text-align: center;
+
+    /* z-index: 5; */
+}
+
+.button:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: var(--color-white) solid 1px;
+}
+
+
+.button:active {
+    color: var(--color-second);
+    border: var(--color-second) solid 1px;
+}
+
+.button-icon:hover img {
+    filter: invert(1); 
+    
+}
+
+.projets {
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.filtre-blanc {
+    filter: grayscale(100%);
+}
+
+.filtre-blanc:hover {
+    filter: grayscale(0%);
+}
+
+#returnTop {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+    transform : rotate(180deg);
+}
 
 /* ------------- Animations ------------- */
 
@@ -224,6 +363,31 @@ header {
     width: 100%;
     left: 0;
 }
+/* anc */
+.animation-hoverBarre::after {
+    content: "";
+    position: absolute;
+    /* Positionnement absolu par rapport au lien */
+    left: 50%;
+    /* Positionnement au centre */
+    bottom: -2px;
+    /* Ajuste la position de la barre sous le texte */
+    height: 2px;
+    /* Épaisseur de la barre */
+    width: 0;
+    /* Commence à une largeur de 0 */
+    background-color: var(--color-second);
+    /* Couleur de la barre */
+    transition: width 0.3s ease, left 0.3s ease;
+    /* Animation pour la largeur et la position */
+}
+.animation-hoverBarre:hover::after {
+    width: 100%;
+    /* S'étend à 100% sur le survol */
+    left: 0;
+    /* Aligne la barre à gauche */
+}
+
 
 .animation-hautBas:hover {
     animation: hautBas 0.5s ease-in-out infinite;
@@ -270,6 +434,11 @@ header {
         flex-direction: column;
     }
 
+    /* Nav */
+    nav {
+        padding: 0 !important;
+    }
+
     #menuNav {
         display: none;
         position: fixed;
@@ -290,4 +459,96 @@ header {
         display: block;
         z-index: 20;
     }
+
+
+    /* Width */
+    .width-70-mobile {
+        width: 70%;
+    }
 }
+
+.grid-competences {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem;
+  scroll-behavior: smooth;
+}
+
+/* Bloc complet */
+.competence-bloc {
+  max-width: 220px;         /* ✅ limite la largeur */
+  width: 100%;              /* ou width: 220px; si tu veux du fixe */
+  flex: 0 0 auto;           /* nécessaire pour scroll horizontal */
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-black);
+}
+
+
+/* Titre + icône */
+.competence-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.competence-nom {
+  font-weight: bold;
+  color: var(--color-white);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.competence-description {
+  font-size: 0.85rem;
+  color: var(--color-white);
+  text-align: center;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+
+/* Enfants */
+.sous-competences {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.child-competence {
+  background-color: var(--color-main);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+}
+
+/* Niveau 2 et plus = enfants des enfants */
+.child-competence .sous-competences .child-competence {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+.child-competence .sous-competences {
+  margin-left: 1rem;
+}
+
+
+
+/* Temp  */
+/* 
+*{
+    border : red solid 1px;
+    box-sizing: border-box;
+}
+*:hover{
+    border-color : green;
+} */

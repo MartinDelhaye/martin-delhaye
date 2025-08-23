@@ -1,0 +1,14 @@
+Expérience solide en programmation orientée objet avec PHP. J’ai déjà développé des API RESTful structurées et mis en place des tests unitaires pour garantir la fiabilité du code.
+
+
+Je maîtrise la conception de bases de données relationnelles (MCD, MLD) ainsi que l’écriture de requêtes complexes. J’ai déjà conçu des schémas complets et les ai mis en œuvre dans différents projets.
+
+
+J’utilise les balises HTML sémantiques pour structurer le contenu de manière claire et accessible, en respectant les bonnes pratiques du SEO.
+
+Je crée des interfaces responsives et soignées. J’intègre des animations légères pour enrichir l’expérience utilisateur, tout en veillant aux performances.
+
+
+Je manipule JavaScript pour dynamiser les interfaces et gérer l’interactivité côté client. J’ai utilisé plusieurs bibliothèques et frameworks sur des projets concrets, notamment pour créer des effets visuels ou gérer des états d’application.
+
+J’ai réalisé plusieurs maquettes et wireframes avec Figma. Je sais utiliser les composants pour construire des systèmes de design réutilisables et cohérents.
