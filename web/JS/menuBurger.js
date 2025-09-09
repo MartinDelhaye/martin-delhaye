@@ -1,7 +1,7 @@
 // ------------------------ Variable Globale ------------------------
 let menuNav;
 let menuBurger;
-let etatNav = false;
+let etatNav = true;
 
 // ------------------------ Fonction ------------------------
 function modifEtatNav() {
