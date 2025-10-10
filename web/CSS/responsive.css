@@ -56,4 +56,8 @@ nav{
     #accueil > div > div {
         height: 40%;
     }
+
+    .no-gap-mobile {
+        gap: 0;
+    }
 }

@@ -70,16 +70,16 @@ $listeProjets = obtenirDonnees(
     <main>
         <section id="accueil">
             <div class="flex column align-items-center justify-content-between">
-                <div class=" width-100 flex row column-mobile align-items-center justify-content-between height-80 gap-medium text-center text-color-white">
-                    <img class="height-100" src="Images/photoProfile.png" alt="Photo de profil" title="Cmoi" />
+                <div class=" width-100 flex row column-mobile align-items-center height-80 gap-medium text-center text-color-white no-gap-mobile">
+                    <img class="height-100" src="images/photoProfile.png" alt="Photo de profil" title="Cmoi" />
                     <div class="flex column align-items-center gap-medium background-black padding-small border-radius background-glass-main ">
-                        <h1 class="margin-auto text-color-white ">Developpeur Web</h1>
+                        <h1 class="margin-auto text-color-white ">Développeur Web</h1>
                         <p class="overflowX-scroll text-justify">
                             Bonjour, je m’appelle Martin et j’ai <?php echo obtenirAge(); ?> ans. Je viens de terminer la deuxième année de mon BUT
                             Métiers du Multimédia et de l’Internet (MMI). Le codage est une véritable passion pour moi, et je
                             cherche constamment à approfondir mes connaissances dans ce domaine. Je suis particulièrement
                             intéressé par le développement backend et les défis de réflexions qu’il présente. Mon objectif est
-                            de continuer à apprendre et à améliorer mes compétences dans ce domaine.
+                            de continuer à apprendre et à améliorer mes compétences dans ce domaine
                         </p>
                         <a href="Delhaye-Martin-CV.pdf" target="_blank" class="button width-content"><button>Mon CV</button></a>
                     </div>
@@ -100,8 +100,8 @@ $listeProjets = obtenirDonnees(
                         }
                         ?>
                     </div>
-                    <div id="projet-detail" class="flex column-mobile height-100 justify-content-between align-items-center background-second padding-small gap-medium border-radius">
-                        <div id="container-projetInfo" class="flex column gap-large width-100 align-items-center height-100">
+                    <div id="projet-detail" class="flex column-mobile height-100 justify-content-between align-items-center background-glass-second background-second padding-small gap-medium border-radius">
+                        <div id="container-projetInfo" class="flex column gap-large width-100 height-100 align-items-center justify-content-center">
                             <div class="flex column gap-small width-100">
                                 <h3 id="projet-titre"></h3>
                                 <div id="projet-lien" class="flex gap-small">
@@ -127,7 +127,7 @@ $listeProjets = obtenirDonnees(
             </div>
         </section>
         <section id="competences">
-            <div class="background-glass-second flex column align-items-center text-color-white padding-small gap-medium">
+            <div class="background-glass-main flex column align-items-center text-color-white padding-small gap-medium">
                 <h2>Mes Compétences</h2>
                 <div id="listeCompetences" class="flex column align-items-center flex-wrap height-100 gap-medium width-100 margin-auto overflowY-scroll">
                     <?php
@@ -140,19 +140,19 @@ $listeProjets = obtenirDonnees(
             <h2 class="background-glass-main padding-small border-radius text-color-white">Me contacter</h2>
             <div class="flex column align-items-center justify-content-center gap-medium">
                 <a href="mailto:delhayemar1@gmail.com"
-                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('Images/Icon-Mail.png', 'Icone mail', 'icon'); ?>
+                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('images/Icon-Mail.png', 'Icone mail', 'icon'); ?>
                     <p>delhayemar1@gmail.com</p>
                 </a>
                 <a href="tel:06 24 52 81 84"
-                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('Images/Icon-Tel.png', 'Icone Tel', 'icon'); ?>
+                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('images/Icon-Tel.png', 'Icone Tel', 'icon'); ?>
                     <p>06 24 52 81 84</p>
                 </a>
                 <div id="reseauxSociaux" class="flex row align-items-center justify-content-center gap-medium">
                     <a href="https://www.linkedin.com/in/martindelhaye/" target="_blank" class="button flex align-items-center filter-blanc">
-                        <?php echo makePicture('Images/reseauxSociaux/icon-LinkedIn.webp', 'Icone Tel', 'icon'); ?>
+                        <?php echo makePicture('images/reseauxSociaux/icon-LinkedIn.webp', 'Icone Tel', 'icon'); ?>
                     </a>
                     <a href="https://github.com/MartinDelhaye" target="_blank" class="button button-icon flex align-items-center ">
-                        <?php echo makePicture('Images/reseauxSociaux/icon-GitHub.png', 'Icone Tel', 'icon'); ?>
+                        <?php echo makePicture('images/reseauxSociaux/icon-GitHub.png', 'Icone Tel', 'icon'); ?>
                     </a>
                 </div>
             </div>
@@ -160,7 +160,7 @@ $listeProjets = obtenirDonnees(
     </main>
 
     <a href="#" class="button button-icon flex align-items-center filter-blanc " id="returnTop">
-        <?php echo makePicture('Images/Icon-flèche-bas-bleu.png', 'Haut de la page', 'icon-small button-icon'); ?>
+        <?php echo makePicture('images/Icon-flèche-bas-bleu.png', 'Haut de la page', 'icon-small button-icon'); ?>
     </a>
 </body>
 

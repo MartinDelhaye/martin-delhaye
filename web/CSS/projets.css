@@ -104,12 +104,20 @@
 }
 
 #Pause {
-    background-color: var(--color-main);
+    background-color: var(--color-second);
     padding: var(--padding-small);
     justify-content: center;
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     text-align: center;
+    border: 1px solid;
+    border-color: rgba(255, 255, 255, 0);
+    transition: all 0.3s ease-in;
+}
+
+#Pause:hover {
+    border-color: var(--color-white);
+    background-color: var(--color-black);
 }
 
 /* Flèches */
