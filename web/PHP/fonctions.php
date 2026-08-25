@@ -65,7 +65,7 @@ function addChild(int $id_competence, array $listeSousCompetences, int $level): 
 
 function displayCompetence(array $competence, string $level, ?array $listeSousCompetences = null): void
 {
-    $imageHtml = makePicture($competence["image_competence"], "Logo de " . $competence['nom_competence'], 'icon-small');
+    $imageHtml = makePicture($competence["image_competence"], "Logo de " . $competence['nom_competence'], 'icon-small', paramSup: 'loading="lazy"');
     echo '<div class="flex column gap-small competence competence-' . $level . '">
     <div class="flex gap-small">' . $imageHtml . $competence['nom_competence'] . '</div>';
     if ($level == 1) {
@@ -83,7 +83,8 @@ function displayProject($testProjet): string
         <?= makePicture(
             $testProjet["illustration_projet"],
             "illustration de " . $testProjet["titre_projet"],
-            'illustration-projet'
+            'illustration-projet',
+            paramSup: 'loading="lazy"',
         ) ?>
     </article>
 <?php

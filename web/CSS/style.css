@@ -13,6 +13,15 @@ input {
     all: unset;
 }
 
+/* ------------ Font ------------ */
+@font-face {
+  font-family: 'Coolvetica Rg';
+  src: url('../assets/fonts/coolvetica-rg.otf');
+  font-display: swap;
+  font-weight: 10;
+  font-style: normal;
+}
+
 /* ------------ Root ------------ */
 :root {
     --color-main: #2B2B4F;
@@ -34,7 +43,7 @@ input {
 
 body {
     background-color: var(--color-black);
-    font-family: 'coolvetica', sans-serif;
+    font-family: 'Coolvetica Rg', sans-serif;
     overflow: hidden;
     width: 100dvw;
     height: 100dvh;

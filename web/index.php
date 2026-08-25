@@ -71,7 +71,7 @@ $listeProjets = obtenirDonnees(
         <section id="accueil">
             <div class="flex column align-items-center justify-content-between">
                 <div class=" width-100 flex row column-mobile align-items-center height-80 gap-medium text-center text-color-white no-gap-mobile">
-                    <img class="height-100" src="images/photoProfile.png" alt="Photo de profil" title="Cmoi" />
+                    <img fetchpriority="high" class="height-100" src="images/photoProfile.webp" alt="Photo de profil" title="Cmoi"/>
                     <div class="flex column align-items-center gap-medium background-black padding-small border-radius background-glass-main ">
                         <h1 class="margin-auto text-color-white ">Développeur Web</h1>
                         <p class="overflowX-scroll text-justify">
@@ -81,7 +81,7 @@ $listeProjets = obtenirDonnees(
                             intéressé par le développement backend et les défis de réflexions qu’il présente. Mon objectif est
                             de continuer à apprendre et à améliorer mes compétences dans ce domaine
                         </p>
-                        <a href="Delhaye-Martin-CV.pdf" target="_blank" class="button width-content"><button>Mon CV</button></a>
+                        <a href="Delhaye-Martin-CV.pdf" target="_blank" class="button width-content">Mon CV</a>
                     </div>
                 </div>
                 <a href="#competences"
@@ -117,8 +117,8 @@ $listeProjets = obtenirDonnees(
                         </div>
                         <div id="container-diapo" class="position-relative flex column width-50 height-100 justify-content-center">
                             <div id="diapo" class="flex-grow-1">
-                                <img class="arrow left-arrow" alt="Une image" src="images/Icon-flèche-gauche.png" id="Precedent">
-                                <img class="arrow right-arrow" alt="Une image" src="images/Icon-flèche-droite.png" id="Suivant">
+                                <img class="arrow left-arrow" alt="Une image" src="images/iconFlecheGauche.png" id="Precedent" loading="lazy">
+                                <img class="arrow right-arrow" alt="Une image" src="images/iconFlecheDroite.png" id="Suivant" loading="lazy">
                             </div>
                             <input type="button" value="Pause" id="Pause" class="display-none"><br>
                         </div>
@@ -140,19 +140,19 @@ $listeProjets = obtenirDonnees(
             <h2 class="background-glass-main padding-small border-radius text-color-white">Me contacter</h2>
             <div class="flex column align-items-center justify-content-center gap-medium">
                 <a href="mailto:delhayemar1@gmail.com"
-                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('images/Icon-Mail.png', 'Icone mail', 'icon'); ?>
+                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('images/contact/iconMail.webp', 'Icone mail', 'icon'); ?>
                     <p>delhayemar1@gmail.com</p>
                 </a>
                 <a href="tel:06 24 52 81 84"
-                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('images/Icon-Tel.png', 'Icone Tel', 'icon'); ?>
+                    class="flex align-items-center gap-small button button-icon"><?php echo makePicture('images/contact/Icon-Tel.png', 'Icone Tel', 'icon'); ?>
                     <p>06 24 52 81 84</p>
                 </a>
                 <div id="reseauxSociaux" class="flex row align-items-center justify-content-center gap-medium">
                     <a href="https://www.linkedin.com/in/martindelhaye/" target="_blank" class="button flex align-items-center filter-blanc">
-                        <?php echo makePicture('images/reseauxSociaux/icon-LinkedIn.webp', 'Icone Tel', 'icon'); ?>
+                        <?php echo makePicture('images/contact/icon-LinkedIn.webp', 'Icone Tel', 'icon'); ?>
                     </a>
                     <a href="https://github.com/MartinDelhaye" target="_blank" class="button button-icon flex align-items-center ">
-                        <?php echo makePicture('images/reseauxSociaux/icon-GitHub.png', 'Icone Tel', 'icon'); ?>
+                        <?php echo makePicture('images/contact/iconGitHub.webp', 'Icone Tel', 'icon'); ?>
                     </a>
                 </div>
             </div>

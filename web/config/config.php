@@ -1,5 +1,7 @@
 <?php
 
+$options = array($initCommandKey => 'SET NAMES ' . $encodage);
+
 // Connexion à la base de données
 $hote = 'db'; // correspond au service MySQL dans docker-compose
 $port = '3306';
