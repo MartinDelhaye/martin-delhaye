@@ -1,25 +1,11 @@
 <?php
 
-$options = array($initCommandKey => 'SET NAMES ' . $encodage);
-
-// Connexion à la base de données
-$hote = 'db'; // correspond au service MySQL dans docker-compose
-$port = '3306';
-$nom_bd = 'mdportfolio';
-$identifiant = 'docker';
-$mot_de_passe = 'docker';
-$encodage = 'utf8';
-
-$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES ' . $encodage);
+$cheminBdd = __DIR__ . '/../data/database.sqlite';
 
 try {
-    $bdd = new PDO(
-        "mysql:host=$hote;port=$port;dbname=$nom_bd",
-        $identifiant,
-        $mot_de_passe,
-        $options
-    );
+    $bdd = new PDO("sqlite:$cheminBdd");
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $bdd->exec('PRAGMA foreign_keys = ON;'); // à activer à chaque connexion, SQLite ne le fait pas par défaut
 } catch (PDOException $e) {
     die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
