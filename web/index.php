@@ -1,17 +1,13 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
 include 'config/config.php';
 include "PHP/fonctions.php";
 
-$listeCompetences = obtenirDonnees(
-    'id_competence, nom_competence, image_competence',
-    'competences',
-    'parent_id IS NULL'
-);
-$listeSousCompetences = obtenirDonnees(
-    'id_competence, nom_competence, image_competence, parent_id',
-    'competences',
-    'parent_id IS NOT NULL'
-);
+use Portfolio\Infrastructure\Repository\CompetenceRepository;
+use Portfolio\Application\Service\Competence\GetCompetencesTreeService;
+
+$competenceRepository = new CompetenceRepository($bdd);
+$racinesCompetences = (new GetCompetencesTreeService($competenceRepository))->execute();
 
 $listeProjets = obtenirDonnees(
     'id_projet, titre_projet, illustration_projet',
@@ -62,7 +58,7 @@ $listeProjets = obtenirDonnees(
             </button>
             <ul id="menuNav" class="flex gap-medium column-mobile">
                 <li><a href="#projets" class="animation-hoverBarre">Projets</a></li>
-                <li><a href="#competences" class="animation-hoverBarre">Compétences</a></li>
+                <li><a href="#competences" class="animation-hoverBarre">Compétences</a></li>
                 <li><a href="#contact" class="animation-hoverBarre">Contact</a></li>
             </ul>
         </nav>
@@ -131,7 +127,7 @@ $listeProjets = obtenirDonnees(
                 <h2>Mes Compétences</h2>
                 <div id="listeCompetences" class="flex column align-items-center flex-wrap height-100 gap-medium width-100 margin-auto overflowY-scroll">
                     <?php
-                    displayCompetences($listeCompetences, $listeSousCompetences);
+                    displayCompetences($racinesCompetences);
                     ?>
                 </div>
             </div>

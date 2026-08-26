@@ -1,5 +1,7 @@
 <?php
 
+use Portfolio\Domain\Model\Competence\Competence;
+
 /**
  * Génère une balise <picture> avec des sources d'images conditionnelles.
  *
@@ -24,6 +26,11 @@ function makePicture(string $img, string $alt, string $class = "", string $id = 
     return $html;
 }
 
+/**
+ * @deprecated Conservée pour les usages non encore migrés vers les repositories DDD
+ * (à confirmer une fois index.php vu en entier). Ne plus utiliser pour
+ * competences/projets, qui passent maintenant par CompetenceRepository/ProjetRepository.
+ */
 function obtenirDonnees($info, $table, $filtre = '', $trier = '', $type_fetch = 'fetchAll')
 {
     global $bdd;
@@ -44,34 +51,39 @@ function obtenirDonnees($info, $table, $filtre = '', $trier = '', $type_fetch = 
     }
 }
 
-function displayCompetences(array $listeCompetencesParents, array $listeSousCompetences): void
+/**
+ * Affiche récursivement une liste de compétences racines (et leurs enfants).
+ * Remplace displayCompetences()/addChild() : plus besoin de deux listes séparées
+ * (parents/sous-compétences) ni de gérer la profondeur à la main, l'arbre est
+ * déjà construit par Competence::construireArbre().
+ *
+ * @param Competence[] $racines
+ */
+function displayCompetences(array $racines): void
 {
-    foreach ($listeCompetencesParents as $competence) {
-        $level = 0;
-        displayCompetence($competence, $level);
-        addChild($competence["id_competence"], $listeSousCompetences, $level);
+    foreach ($racines as $competence) {
+        displayCompetence($competence, 0);
         echo '</div>';
-    }
-};
-
-function addChild(int $id_competence, array $listeSousCompetences, int $level): void
-{
-    foreach ($listeSousCompetences as $sousCompetences) {
-        if ($sousCompetences['parent_id'] == $id_competence) {
-            displayCompetence($sousCompetences, $level + 1, $listeSousCompetences);
-        }
     }
 }
 
-function displayCompetence(array $competence, string $level, ?array $listeSousCompetences = null): void
+function displayCompetence(Competence $competence, int $level): void
 {
-    $imageHtml = makePicture($competence["image_competence"], "Logo de " . $competence['nom_competence'], 'icon-small', paramSup: 'loading="lazy"');
-    echo '<div class="flex column gap-small competence competence-' . $level . '">
-    <div class="flex gap-small">' . $imageHtml . $competence['nom_competence'] . '</div>';
-    if ($level == 1) {
-        addChild($competence["id_competence"], $listeSousCompetences, $level + 1);
+    $imageHtml = $competence->image()
+        ? makePicture($competence->image(), "Logo de " . $competence->nom(), 'icon-small', paramSup: 'loading="lazy"')
+        : '';
+
+    echo '<div class="flex column gap-small competence competence-' . $level . '"'
+        . ' data-id-competence="' . $competence->id()->value() . '">'
+        . '<div class="flex gap-small">' . $imageHtml . htmlspecialchars($competence->nom()) . '</div>';
+
+    foreach ($competence->enfants() as $enfant) {
+        displayCompetence($enfant, $level + 1);
     }
-    if ($level > 0) echo '</div>';
+
+    if ($level > 0) {
+        echo '</div>';
+    }
 }
 
 function displayProject($testProjet): string

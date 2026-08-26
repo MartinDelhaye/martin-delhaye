@@ -40,4 +40,13 @@ CREATE TABLE IF NOT EXISTS images_projet (
 )";
 $pdo->exec($sql);
 
+// Table de jointure many-to-many : le lien compétences <-> projets qui manquait
+$sql = "
+CREATE TABLE IF NOT EXISTS projet_competence (
+    id_projet INTEGER NOT NULL REFERENCES projets(id_projet) ON DELETE CASCADE,
+    id_competence INTEGER NOT NULL REFERENCES competences(id_competence) ON DELETE CASCADE,
+    PRIMARY KEY (id_projet, id_competence)
+)";
+$pdo->exec($sql);
+
 echo "Base SQLite initialisée ✅\n";

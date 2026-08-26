@@ -1,34 +1,14 @@
 <?php
-include '../config/config.php';
-include "fonctions.php";
 
-$donnees = array();
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../config/config.php';
 
-//Vérifier si on a bien les param
-if (isset($_GET["id_projet"])) {
-    $id_projet = (int) $_GET["id_projet"]; // sécurisation
-    $donnees["projet"] = obtenirDonnees(
-        'id_projet, titre_projet, url_projet, urlGitHub_projet, texte_projet, date_projet, illustration_projet',
-        'projets',
-        'id_projet = '.$id_projet,
-        type_fetch:'fetch'
+use Portfolio\Infrastructure\Repository\ProjetRepository;
+use Portfolio\Application\Service\Projet\GetProjetByIdService;
+use Portfolio\Infrastructure\Api\Projet\GetProjetByIdController;
 
-    );
-    if(!empty($donnees["projet"])) {
-        $donnees["statut"] = "ok";
-        $donnees["projet"]["images"] = obtenirDonnees(
-            'url_image',
-            'images_projet',
-            'id_projet = '.$id_projet
-        );
-    } else {    
-        $donnees["erreur"] = "Projet non trouvé";
-        $donnees["statut"] = "erreur";
-    }   
-}
+$projetRepository = new ProjetRepository($bdd);
+$service = new GetProjetByIdService($projetRepository);
+$controller = new GetProjetByIdController($service);
 
-// Encodage de la réponse en JSON et affichage
-header('Content-Type: application/json');
-$donneesJson = json_encode($donnees);
-// $donneesJson = str_replace("\\n", " ", $donneesJson);
-echo $donneesJson;
+$controller->handle($_GET['id_projet'] ?? null);

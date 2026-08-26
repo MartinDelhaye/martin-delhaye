@@ -139,4 +139,28 @@ foreach ($imagesProjet as $img) {
     $insertImage->execute($img);
 }
 
+// --- projet_competence ---
+// Associations proposées par déduction des descriptions de projets.
+// À AJUSTER : c'est une estimation, pas une vérité issue de la base.
+// (id_projet, id_competence)
+$projetCompetence = [
+    // MaMusique : PHP + MySQL (BDD relationnelle + admin), HTML/CSS/JS sans librairie
+    [1, 1], [1, 11], [1, 3], [1, 4], [1, 5],
+    // Tonnerre 2 Zeus : site statique HTML/CSS/PHP/JS, wireframe Figma
+    [2, 3], [2, 4], [2, 1], [2, 5], [2, 12],
+    // TheGuardian : dataviz avec GSAP + Snap.js (toutes deux enfants de JavaScript)
+    [3, 5], [3, 8], [3, 7], [3, 3], [3, 4],
+    // AD Personal Training : site vitrine dynamique avec admin, PHP + MySQL
+    [4, 1], [4, 11], [4, 3], [4, 4], [4, 5],
+    // TwoSeeToSee : jeu THREE.js + Ammo.js (toutes deux enfants de JavaScript)
+    [5, 5], [5, 20], [5, 23],
+];
+
+$insertLien = $pdo->prepare(
+    "INSERT INTO projet_competence (id_projet, id_competence) VALUES (?, ?)"
+);
+foreach ($projetCompetence as $lien) {
+    $insertLien->execute($lien);
+}
+
 echo "Données du portfolio importées ✅\n";
