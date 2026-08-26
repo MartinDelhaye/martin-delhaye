@@ -1,0 +1,17 @@
+/* ------------ Unset ------------ */
+
+
+/* ------------ Font ------------ */
+@font-face {
+  font-family: 'Coolvetica Rg';
+  src: url('../assets/fonts/coolvetica-rg.otf');
+  font-display: swap;
+  font-weight: 10;
+  font-style: normal;
+}
+
+/* ------------ Root ------------ */
+:root {
+    --color-blue: #2B2B4F;
+    --color-coral: #FF6F61;
+}
