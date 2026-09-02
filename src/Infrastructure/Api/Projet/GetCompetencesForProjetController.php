@@ -26,7 +26,7 @@ final class GetCompetencesForProjetController
                     'id_competence' => $c->id()->value(),
                     'nom_competence' => $c->nom(),
                     'image_competence' => $c->image(),
-                    'type_competence' => $c->type(),
+                    'type_competence' => $c->type()->value,
                 ],
                 $competences
             ),

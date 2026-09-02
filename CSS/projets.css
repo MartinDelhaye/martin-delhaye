@@ -1,0 +1,96 @@
+/* ------------ Carte projet ------------ */
+.projet-card {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    max-width: 900px;
+    width: 100%;
+    margin-inline: auto;
+}
+
+.projet-entete h3 {
+    font-size: 1.4rem;
+}
+
+.projet-entete .badge-categorie {
+    background-color: var(--color-blue);
+}
+
+.projet-annee {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+/* ------------ Bandeau des compétences liées ------------ */
+.banderole-competences {
+    padding: 0.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.banderole-competences li {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+/* ------------ Carrousel ------------ */
+.projet-carrousel {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.carrousel-slides {
+    position: relative;
+    width: 100%;
+}
+
+.carrousel-slide {
+    display: none;
+    width: 100%;
+}
+.carrousel-slide.active {
+    display: block;
+}
+
+/* Format 16:9 constant, quelle que soit l'image d'origine */
+.aspect-16-9 {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+.aspect-16-9 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.projet-carrousel .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    color: var(--color-white);
+    font-size: 1.2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.projet-carrousel .left-arrow { left: 0.75rem; }
+.projet-carrousel .right-arrow { right: 0.75rem; }
+.projet-carrousel .arrow:hover { background: rgba(0, 0, 0, 0.7); }
+
+/* ------------ Description & liens ------------ */
+.projet-description {
+    line-height: 1.5;
+    opacity: 0.9;
+    max-height: 8rem;
+}
+
+.projet-liens {
+    margin-top: 0.5rem;
+}

@@ -4,7 +4,7 @@ namespace Portfolio\Domain\Model\Competence;
 
 interface CompetenceRepositoryInterface
 {
-    /** @return Competence[] liste plate, non hiérarchisée */
+    /** @return Competence[] liste plate */
     public function findAll(): array;
 
     public function findById(CompetenceId $id): ?Competence;

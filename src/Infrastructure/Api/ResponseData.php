@@ -2,11 +2,6 @@
 
 namespace Portfolio\Infrastructure\Api;
 
-/**
- * Enveloppe JSON standard pour toutes les réponses API.
- * Garde le contrat existant utilisé par le JS actuel : {statut, ...}
- * ou {statut: "erreur", erreur: "..."}.
- */
 final class ResponseData
 {
     public static function succes(array $donnees): void

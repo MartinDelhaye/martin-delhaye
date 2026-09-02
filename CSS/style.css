@@ -1,6 +1,3 @@
-/* ------------ Unset ------------ */
-
-
 /* ------------ Font ------------ */
 @font-face {
   font-family: 'Coolvetica Rg';
@@ -14,4 +11,252 @@
 :root {
     --color-blue: #2B2B4F;
     --color-coral: #FF6F61;
+    --color-white: #FFFFFF;
+    --color-black: #0D0D14;
+
+    --space-small: 0.5rem;
+    --space-medium: 1rem;
+    --space-large: 2rem;
+
+    --radius: 0.75rem;
+
+    --glass-bg: rgba(13, 13, 20, 0.55);
+    --glass-bg-second: rgba(43, 43, 79, 0.55);
+}
+
+/* ------------ Reset minimal ------------ */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Coolvetica Rg', system-ui, sans-serif;
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+/* ------------ Layout utilitaires ------------ */
+.flex { display: flex; }
+.column { flex-direction: column; }
+.row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-grow-1 { flex-grow: 1; }
+
+.align-items-center { align-items: center; }
+.align-items-between { align-items: stretch; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+
+.gap-small { gap: var(--space-small); }
+.gap-medium { gap: var(--space-medium); }
+.gap-large { gap: var(--space-large); }
+
+.width-100 { width: 100%; }
+.width-50 { width: 50%; }
+.width-content { width: fit-content; }
+.height-100 { height: 100%; }
+.height-80 { height: 80%; }
+.height-screen { min-height: 100vh; }
+
+.margin-auto { margin: auto; }
+.padding-small { padding: var(--space-small) var(--space-medium); }
+
+.text-center { text-align: center; }
+.text-justify { text-align: justify; }
+.text-color-white { color: var(--color-white); }
+.text-color-main { color: var(--color-blue); }
+.text-color-second { color: var(--color-coral); }
+
+.background-black { background-color: var(--color-black); }
+.background-second { background-color: var(--color-blue); }
+.background-glass-main {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(8px);
+}
+.background-glass-second {
+    background-color: var(--glass-bg-second);
+    backdrop-filter: blur(8px);
+}
+
+.border-radius { border-radius: var(--radius); }
+.border-radius-bottom-right { border-radius: 0 0 var(--radius) 0; }
+.border-radius-bottom-left { border-radius: 0 0 0 var(--radius); }
+
+.position-absolute { position: absolute; top: 0; left: 0; right: 0; z-index: 10; }
+.position-relative { position: relative; }
+.bottom-0 { bottom: 1rem; position: absolute; }
+.left-50 { left: 50%; transform: translateX(-50%); }
+
+.display-none { display: none; }
+
+.overflowX-scroll { overflow-x: auto; }
+.overflowY-scroll { overflow-y: auto; }
+
+.filter-blanc { filter: brightness(0) invert(1); }
+
+/* ------------ Boutons ------------ */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-small);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius);
+    border: none;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.button:hover {
+    background-color: var(--color-blue);
+    transform: translateY(-2px);
+}
+.button-icon { padding: 0.6rem; border-radius: 50%; }
+
+/* ------------ Icônes ------------ */
+.icon { width: 1.75rem; height: 1.75rem; }
+.icon-small { width: 1.25rem; height: 1.25rem; }
+.icon-tiny { width: 0.9rem; height: 0.9rem; }
+
+/* ------------ Badges ------------ */
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background-color: var(--color-coral);
+    color: var(--color-white);
+}
+
+/* ------------ Animations légères ------------ */
+.animation-hoverBarre {
+    position: relative;
+}
+.animation-hoverBarre::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-coral);
+    transition: width 0.2s ease;
+}
+.animation-hoverBarre:hover::after { width: 100%; }
+
+.animation-hautBas {
+    animation: hautBas 1.6s ease-in-out infinite;
+}
+@keyframes hautBas {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -8px); }
+}
+
+/* ------------ Sections avec fond récif (réservé, aucun fond posé encore) ------------ */
+.section-avec-fond-recif {
+    position: relative;
+}
+
+main {
+    padding-top: 0;
+}
+
+section {
+    padding: 3rem 1rem;
+}
+
+/* ------------ Header ------------ */
+header {
+    padding: 0.75rem 1rem;
+}
+header nav ul {
+    padding: 0.75rem 1.5rem;
+}
+header nav ul li a {
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+header .background-glass-main p {
+    margin: 0;
+    padding: 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* ------------ Accueil / Hero ------------ */
+#accueil {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 5rem; /* dégage le header en position absolute */
+}
+
+#accueil > .flex.column {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    gap: var(--space-large);
+}
+
+#accueil .row.column-mobile {
+    align-items: flex-end; /* la photo (rognée aux cuisses) et la carte texte partagent la même ligne de base */
+    justify-content: center;
+    height: auto;
+}
+
+#accueil img[alt="Photo de profil"] {
+    width: clamp(160px, 26vw, 340px);
+    height: auto;
+    max-height: 65vh;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+#accueil .background-glass-main {
+    max-width: 32rem;
+    padding: 1.5rem;
+}
+
+/* Le texte doit s'enrouler normalement, pas défiler horizontalement */
+#accueil p.overflowX-scroll {
+    overflow-x: visible;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    #accueil .row.column-mobile {
+        align-items: center;
+    }
+    #accueil img[alt="Photo de profil"] {
+        width: clamp(140px, 45vw, 260px);
+        max-height: 40vh;
+    }
 }

@@ -11,7 +11,8 @@ final class Projet
         private readonly ProjetId $id,
         private readonly string $titre,
         private readonly string $texte,
-        private readonly ?string $date,
+        private readonly ?int $annee,
+        private readonly CategorieProjet $categorie,
         private readonly ?string $urlProjet,
         private readonly ?string $urlGitHub,
         private readonly string $illustration,
@@ -35,9 +36,14 @@ final class Projet
         return $this->texte;
     }
 
-    public function date(): ?string
+    public function annee(): ?int
     {
-        return $this->date;
+        return $this->annee;
+    }
+
+    public function categorie(): CategorieProjet
+    {
+        return $this->categorie;
     }
 
     public function urlProjet(): ?string
@@ -59,5 +65,15 @@ final class Projet
     public function images(): array
     {
         return $this->images;
+    }
+
+    /** @return string[] toutes les images (illustration + galerie), pour le carrousel */
+    public function toutesLesImages(): array
+    {
+        $urls = [$this->illustration];
+        foreach ($this->images as $image) {
+            $urls[] = $image->url();
+        }
+        return $urls;
     }
 }
