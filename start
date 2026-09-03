@@ -1,11 +1,4 @@
 #!/bin/bash
-
 echo "🚀 Démarrage du serveur"
-
-docker compose up -d
-
-echo "🌱 Vérification de la BDD..."
-docker compose exec php php sqlite/initialize.php
-docker compose exec php php sqlite/seed-portfolio.php
-
+docker compose up -d --remove-orphans
 echo "🌐 Serveur démarré sur http://localhost:8080"

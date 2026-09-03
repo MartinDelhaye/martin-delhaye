@@ -1,9 +1,8 @@
 // ------------------------ Importation ------------------------
-import { initCarrousels } from "./carousel.js";
-import { initMenuBurger } from "./menuBurger.js";
+import { gsap } from "gsap";
 
 // ------------------------ Initialisation ------------------------
 window.addEventListener("DOMContentLoaded", async () => {
-    initCarrousels();
-    initMenuBurger();
+    console.log("DOM fully loaded and parsed");
+    gsap.to("#box", { x: 200, duration: 1, backgroundColor: "red" });
 });
