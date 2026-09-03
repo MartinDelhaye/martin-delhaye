@@ -10,5 +10,5 @@ interface CompetenceRepositoryInterface
     public function findById(CompetenceId $id): ?Competence;
 
     /** @return Competence[] compétences utilisées par un projet donné */
-    public function findByProjetId(int $idProjet): array;
+    public function findByProjetId(string $idProjet): array;
 }

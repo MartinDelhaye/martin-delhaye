@@ -23,7 +23,7 @@ final class GetProjetsForCompetenceController
         ResponseData::succes([
             'projets' => array_map(
                 fn ($p) => [
-                    'id_projet' => $p->id()->value(),
+                    'id_projet' => $p->getId()->getValue(),
                     'titre_projet' => $p->titre(),
                     'illustration_projet' => $p->illustration(),
                 ],

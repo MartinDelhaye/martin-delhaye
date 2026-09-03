@@ -23,10 +23,10 @@ final class GetCompetencesForProjetController
         ResponseData::succes([
             'competences' => array_map(
                 fn ($c) => [
-                    'id_competence' => $c->id()->value(),
-                    'nom_competence' => $c->nom(),
+                    'id_competence' => $c->getId()->getValue(),
+                    'nom_competence' => $c->getNom(),
                     'image_competence' => $c->image(),
-                    'type_competence' => $c->type()->value,
+                    'type_competence' => $c->getType()->value,
                 ],
                 $competences
             ),

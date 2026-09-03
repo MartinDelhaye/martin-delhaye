@@ -27,7 +27,7 @@ final class GetCompetencesGroupedByTypeService
         }
 
         foreach ($toutes as $competence) {
-            $groupes[$competence->type()->value][] = $competence;
+            $groupes[$competence->getType()->value][] = $competence;
         }
 
         // On retire les groupes vides (pas de compétence de ce type actuellement)

@@ -10,5 +10,5 @@ interface ProjetRepositoryInterface
     public function findAll(): array;
 
     /** @return Projet[] projets utilisant une compétence donnée */
-    public function findByCompetenceId(int $idCompetence): array;
+    public function findByCompetenceId(string $idCompetence): array;
 }

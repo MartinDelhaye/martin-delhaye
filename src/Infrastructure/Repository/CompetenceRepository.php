@@ -31,7 +31,7 @@ final class CompetenceRepository implements CompetenceRepositoryInterface
             'SELECT id_competence, nom_competence, image_competence, type_competence, description
              FROM competences WHERE id_competence = ?'
         );
-        $stmt->execute([$id->value()]);
+        $stmt->execute([$id->getValue()]);
         $ligne = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $ligne === false ? null : $this->hydrater($ligne);

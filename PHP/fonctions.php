@@ -55,10 +55,10 @@ function displayProject(Projet $projet, array $competencesLiees): string
             <ul class="banderole-competences flex row gap-medium flex-wrap">
                 <?php foreach ($competencesLiees as $competence): ?>
                     <li class="flex align-items-center gap-small">
-                        <?php if ($competence->image()): ?>
-                            <?= makePicture($competence->image(), "Logo de " . $competence->nom(), 'icon-tiny', paramSup: 'loading="lazy"') ?>
+                        <?php if ($competence->getImage()): ?>
+                            <?= makePicture($competence->getImage(), "Logo de " . $competence->getNom(), 'icon-tiny', paramSup: 'loading="lazy"') ?>
                         <?php endif; ?>
-                        <span><?= htmlspecialchars($competence->nom()) ?></span>
+                        <span><?= htmlspecialchars($competence->getNom()) ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -115,11 +115,11 @@ function displayCompetencesGroupees(array $groupes): void
         echo '<h3 class="type-competence-label">' . htmlspecialchars($type) . '</h3>';
         echo '<div class="cartes-competences flex row flex-wrap gap-medium">';
         foreach ($competences as $competence) {
-            echo '<div class="carte-competence flex column align-items-center gap-small" data-id-competence="' . $competence->id()->value() . '">';
-            if ($competence->image()) {
-                echo makePicture($competence->image(), "Logo de " . $competence->nom(), 'icon-small', paramSup: 'loading="lazy"');
+            echo '<div class="carte-competence flex column align-items-center gap-small" data-id-competence="' . $competence->getId()->getValue() . '">';
+            if ($competence->getImage()) {
+                echo makePicture($competence->getImage(), "Logo de " . $competence->getNom(), 'icon-small', paramSup: 'loading="lazy"');
             }
-            echo '<span>' . htmlspecialchars($competence->nom()) . '</span>';
+            echo '<span>' . htmlspecialchars($competence->getNom()) . '</span>';
             echo '</div>';
         }
         echo '</div></div>';

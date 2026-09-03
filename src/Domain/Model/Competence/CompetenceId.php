@@ -4,11 +4,11 @@ namespace Portfolio\Domain\Model\Competence;
 
 final class CompetenceId
 {
-    public function __construct(private readonly int $value)
+    public function __construct(private readonly string $value)
     {
     }
 
-    public function value(): int
+    public function value(): string
     {
         return $this->value;
     }
